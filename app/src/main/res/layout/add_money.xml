@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+   >
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:text="I WANT TO ADD"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#fff"
+        android:textSize="30px"
+        />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/amount_field"
+        android:ems="3"
+        android:inputType="number"
+        android:text="100"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="150px" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:text="INDIAN RUPEES"
+        android:textColor="#fff"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_marginTop="100dp"
+        android:id="@+id/add_money_button"
+        android:layout_width="300dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/white_border_button"
+        android:text="USING CREDIT/DEBIT CARD"
+        android:textColor="#fff"
+        android:textSize="25px"
+         />
+</LinearLayout>

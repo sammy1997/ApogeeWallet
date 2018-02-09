@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.awesomecorp.sammy.apogeewallet.WalletActivity">
+
+
+    <!-- include main content -->
+    <include layout="@layout/main_layout" />
+
+    <!-- include bottom sheet -->
+    <include layout="@layout/bottom_sheet_add_to_cart" />
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="SUCCESSFUL ADDED"
+        android:textColor="#FFF"
+        android:textSize="35px"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFF"
+        android:layout_marginTop="10dp"
+        android:textSize="130px"
+        android:text="500"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_marginTop="10dp"
+        android:layout_width="270dp"
+        android:layout_height="2.5dp"
+        android:background="#fff"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFF"
+        android:textSize="35px"
+        android:text="INDIAN RUPEES TO YOUR WALLET"
+        android:layout_gravity="center_horizontal"/>
+
+    <ImageView
+        android:layout_marginTop="30dp"
+        android:id="@+id/imageView3"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        app:srcCompat="@drawable/success"
+        android:layout_gravity="center_horizontal"/>
+</LinearLayout>

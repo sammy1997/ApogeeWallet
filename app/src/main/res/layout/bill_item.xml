@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/topLayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/stall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stall #25"
+            android:textColor="#000"
+            android:textSize="40px"
+            android:padding="5px"
+            android:layout_margin="5px"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/topLayer"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35px"
+            android:layout_margin="5px"
+            android:padding="5px"
+            android:textColor="#707070"
+            android:layout_gravity="left"
+            android:layout_weight=".8"
+            android:text="Rs. 150"/>
+
+        <TextView
+            android:id="@+id/date"
+            android:textColor="#707070"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight=".2"
+            android:layout_margin="5px"
+            android:padding="5px"
+            android:text="FEB 22"
+            android:textSize="35px" />
+
+    </LinearLayout>
+</RelativeLayout>
