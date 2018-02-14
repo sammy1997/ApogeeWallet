@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.awesomecorp.sammy.apogeewallet.R;
+import com.awesomecorp.sammy.apogeewallet.listners.OnAddToCartButtonListener;
+import com.awesomecorp.sammy.apogeewallet.models.Item;
 
 import java.util.List;
 
@@ -20,8 +22,9 @@ import java.util.List;
 
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder>{
 
-    List<String> values;
+    List<Item> values;
     Activity activity;
+    OnAddToCartButtonListener addToCartButtonListener;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView txtItemName;
@@ -36,9 +39,10 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder>{
         }
     }
 
-    public ItemsAdapter(List<String> data, Activity activity) {
+    public ItemsAdapter(List<Item> data, Activity activity, OnAddToCartButtonListener addToCartButtonListener) {
         values=data;
         this.activity = activity;
+        this.addToCartButtonListener = addToCartButtonListener;
     }
 
     @Override
@@ -54,18 +58,18 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        final String name = values.get(position);
+        final String name = values.get(position).getItemName();
         holder.txtItemName.setText(name);
         holder.addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(activity, "Position "+ position,Toast.LENGTH_SHORT).show();
+                addToCartButtonListener.onAddToCartClicked(values.get(position));
             }
         });
 
         Typeface montLight = Typeface.createFromAsset(activity.getAssets(),"fonts/Montserrat-Light.ttf");
         Typeface montReg = Typeface.createFromAsset(activity.getAssets(),"fonts/Montserrat-Regular.ttf");
-        holder.txtCost.setText("INR 150");
+        holder.txtCost.setText("INR " + values.get(position).getCost());
         holder.txtItemName.setTypeface(montReg);
         holder.txtCost.setTypeface(montLight);
     }

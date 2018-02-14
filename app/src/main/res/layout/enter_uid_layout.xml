@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:text="ENTER THE UID OF YOUR FRIEND"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#fff"
+        android:textSize="18dp"
+        />
+
+    <EditText
+        android:id="@+id/uid_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/amount_field"
+        android:ems="4"
+        android:layout_marginTop="10dp"
+        android:inputType="number"
+        android:text="100"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="45dp" />
+
+
+    <Button
+        android:layout_marginTop="72dp"
+        android:id="@+id/enter_uid_button"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/white_border_button"
+        android:text="CONTINUE"
+        android:textColor="#fff"
+        android:textSize="13dp"
+        />
+</LinearLayout>

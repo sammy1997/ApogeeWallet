@@ -13,7 +13,7 @@
         android:text="I WANT TO ADD"
         android:layout_gravity="center_horizontal"
         android:textColor="#fff"
-        android:textSize="30px"
+        android:textSize="18dp"
         />
 
     <EditText
@@ -27,7 +27,7 @@
         android:text="100"
         android:textAlignment="center"
         android:textColor="#fff"
-        android:textSize="150px" />
+        android:textSize="75dp" />
 
     <TextView
         android:id="@+id/textView7"
@@ -38,15 +38,24 @@
         android:textColor="#fff"
         android:layout_gravity="center_horizontal" />
 
+    <ProgressBar
+        android:layout_marginTop="20dp"
+        android:id="@+id/progressBar3"
+        android:visibility="invisible"
+        android:background="@drawable/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content" />
+
     <Button
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="72dp"
         android:id="@+id/add_money_button"
         android:layout_width="300dp"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/white_border_button"
         android:text="USING CREDIT/DEBIT CARD"
         android:textColor="#fff"
-        android:textSize="25px"
+        android:textSize="13dp"
          />
 </LinearLayout>

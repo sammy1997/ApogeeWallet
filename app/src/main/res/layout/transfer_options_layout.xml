@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TRANSFER VIA :"
+        android:textSize="17dp"
+        android:textColor="#fff"
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:id="@+id/enter_uid"
+        android:layout_width="300dp"
+        android:layout_marginTop="40dp"
+        android:layout_height="36dp"
+        android:text="ENTER FRIEND'S UID"
+        android:textSize="14dp"
+        android:textColor="#fff"
+        android:background="@drawable/white_border_button"
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:id="@+id/via_qr_scan"
+        android:layout_marginTop="30dp"
+        android:layout_width="300dp"
+        android:layout_height="36dp"
+        android:text="SCAN QR"
+        android:textSize="14dp"
+        android:textColor="#fff"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/white_border_button"/>
+
+
+</LinearLayout>

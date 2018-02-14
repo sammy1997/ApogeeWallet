@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.awesomecorp.sammy.apogeewallet.R;
+import com.awesomecorp.sammy.apogeewallet.listners.OnViewItemsClickedListener;
+import com.awesomecorp.sammy.apogeewallet.models.Shop;
 
 import java.util.List;
 
@@ -21,9 +23,9 @@ import java.util.List;
 
 public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> {
 
-    List<String> values;
+    List<Shop> values;
     Activity activity;
-
+    OnViewItemsClickedListener onViewItemsClickedListener;
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView txtStallName;
         public TextView txtDesc;
@@ -37,36 +39,43 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> 
         }
     }
 
-    public ShopsAdapter(List<String> data, Activity activity) {
+    public ShopsAdapter(List<Shop> data, Activity activity, OnViewItemsClickedListener onViewItemsClickedListener) {
         values=data;
         this.activity = activity;
+        this.onViewItemsClickedListener = onViewItemsClickedListener;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                            int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View v =inflater.inflate(R.layout.stalls_name_item, parent, false);
 
-        ViewHolder vh = new ViewHolder(v);
+        final ViewHolder vh = new ViewHolder(v);
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onViewItemsClickedListener.onViewItemClicked(values.get(vh.getAdapterPosition()));
+            }
+        });
         return vh;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        final String name = values.get(position);
+        final String name = values.get(position).getName();
         holder.txtStallName.setText(name);
         holder.getItems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(activity, "Position "+ position,Toast.LENGTH_SHORT).show();
+                onViewItemsClickedListener.onViewItemClicked(values.get(position));
+//                Toast.makeText(activity, "Position "+ position,Toast.LENGTH_SHORT).show();
             }
         });
 
         Typeface montLight = Typeface.createFromAsset(activity.getAssets(),"fonts/Montserrat-Light.ttf");
         Typeface montReg = Typeface.createFromAsset(activity.getAssets(),"fonts/Montserrat-Regular.ttf");
-        holder.txtDesc.setText("Pizzas and Stuff");
+        holder.txtDesc.setText(values.get(position).getDescription());
         holder.txtStallName.setTypeface(montReg);
         holder.txtDesc.setTypeface(montLight);
     }

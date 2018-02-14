@@ -17,6 +17,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.awesomecorp.sammy.apogeewallet.R;
+import com.awesomecorp.sammy.apogeewallet.listners.OnDataLoadedListner;
 import com.awesomecorp.sammy.apogeewallet.models.Transaction;
 import com.awesomecorp.sammy.apogeewallet.utils.URLS;
 import com.awesomecorp.sammy.apogeewallet.utils.Utils;
@@ -43,9 +44,6 @@ public class WalletLoadFragment extends Fragment {
     public WalletLoadFragment() {
     }
 
-    public interface OnDataLoadedListner{
-         void onDataLoaded(List<Transaction> transactions, boolean listEmpty);
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -105,62 +103,19 @@ public class WalletLoadFragment extends Fragment {
                                     .addHeaders("Authorization","JWT " + token).build().getAsJSONObject(new JSONObjectRequestListener() {
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    try {
-                                        String name = response.getJSONObject("participant").getString("name");
-                                        String college = response.getJSONObject("participant").getString("college_name");
-                                        String balance = response.getJSONObject("wallet").getString("curr_balance");
-                                        JSONArray sales = response.getJSONObject("cart").getJSONArray("sales");
-                                        Log.e("TAG: ",response.toString());
-                                        editor.putString("name",name);
-                                        editor.putString("college",college);
-                                        editor.putString("balance",balance);
-                                        editor.commit();
-                                        if(sales.length()!=0) {
-                                            loadedListner.onDataLoaded(data, false);
-                                        }else {
-                                            loadedListner.onDataLoaded(data, true);
-                                        }
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-
-                                        progressBar.setVisibility(View.INVISIBLE);
-                                        tv.setVisibility(View.VISIBLE);
-                                        refresh.setVisibility(View.VISIBLE);
-                                        refresh.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                loadData();
-                                            }
-                                        });
-                                    }
+                                    successFetch(response);
                                 }
 
                                 @Override
                                 public void onError(ANError anError) {
                                     Log.e("Error", anError.toString());
-                                    progressBar.setVisibility(View.INVISIBLE);
-                                    tv.setVisibility(View.VISIBLE);
-                                    refresh.setVisibility(View.VISIBLE);
-                                    refresh.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            loadData();
-                                        }
-                                    });
+                                    reload();
                                 }
                             });
                         } catch (JSONException e) {
                             e.printStackTrace();
 
-                            progressBar.setVisibility(View.INVISIBLE);
-                            tv.setVisibility(View.VISIBLE);
-                            refresh.setVisibility(View.VISIBLE);
-                            refresh.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    loadData();
-                                }
-                            });
+                            reload();
 
                         }
                     }
@@ -168,17 +123,49 @@ public class WalletLoadFragment extends Fragment {
                     @Override
                     public void onError(ANError anError) {
                         Log.e("Error", anError.toString());
-                        progressBar.setVisibility(View.INVISIBLE);
-                        tv.setVisibility(View.VISIBLE);
-                        refresh.setVisibility(View.VISIBLE);
-                        refresh.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                loadData();
-                            }
-                        });
+                        reload();
                     }
         });
     }
 
+    void reload(){
+        progressBar.setVisibility(View.INVISIBLE);
+        tv.setVisibility(View.VISIBLE);
+        refresh.setVisibility(View.VISIBLE);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadData();
+            }
+        });
+    }
+
+    void successFetch(JSONObject response){
+        try {
+            String name = response.getJSONObject("participant").getString("name");
+            String college = response.getJSONObject("participant").getString("college_name");
+            String balance = response.getJSONObject("wallet").getString("curr_balance");
+            boolean isBitsian = response.getJSONObject("wallet").getBoolean("is_bitsian");
+            String userid = response.getJSONObject("wallet").getString("userid");
+            String walletID = response.getJSONObject("wallet").getString("uid");
+            JSONArray sales = response.getJSONArray("transactions");
+
+            Log.e("TAG: ",response.toString());
+            editor.putString("name",name);
+            editor.putString("college",college);
+            editor.putString("balance",balance);
+            editor.putString("walletID",walletID);
+            editor.putString("userid",userid);
+            editor.putBoolean("is_bitsian",isBitsian);
+            editor.commit();
+            if(sales.length()!=0) {
+                loadedListner.onDataLoaded(data, false);
+            }else {
+                loadedListner.onDataLoaded(data, true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            reload();
+        }
+    }
 }

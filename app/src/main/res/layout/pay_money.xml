@@ -38,8 +38,17 @@
         android:textColor="#fff"
         android:layout_gravity="center_horizontal" />
 
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/progress_bar"
+        android:layout_width="wrap_content"
+        android:visibility="invisible"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content" />
+
     <Button
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:id="@+id/pay_money_button"
         android:layout_width="300dp"
         android:layout_height="35dp"
@@ -49,4 +58,6 @@
         android:textColor="#b55fce"
         android:textSize="25px"
         />
+
+
 </LinearLayout>
