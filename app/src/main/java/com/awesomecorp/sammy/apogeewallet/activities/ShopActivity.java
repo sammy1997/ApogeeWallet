@@ -142,10 +142,10 @@ public class ShopActivity extends AppCompatActivity implements OnAddToCartButton
         });
 
         boolean shop_qr_scanned = preferences.getBoolean("shop_qr_scanned",false);
+        Log.e("Shop QR", "" + shop_qr_scanned);
 
         if (shop_qr_scanned){
             String qrcode = preferences.getString("qr_code","");
-            Log.e("Here","In Shop");
             editor.putBoolean("shop_qr_scanned", false);
             editor.putBoolean("transfer_scanned", false);
             editor.apply();
@@ -153,11 +153,11 @@ public class ShopActivity extends AppCompatActivity implements OnAddToCartButton
             shop.setId(qrcode);
             ItemsViewFragment itemsViewFragment = ItemsViewFragment.newInstance(shop);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment, itemsViewFragment,
-                    "Order Food Fragment").commit();
+                    "XXX").commitAllowingStateLoss();
         }else {
             OrderFoodFragment orderFoodFragment = new OrderFoodFragment();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment, orderFoodFragment,
-                    "Order Food Fragment").commit();
+                    "Order Food Fragment").commitAllowingStateLoss();
         }
 
         profile.setOnClickListener(new View.OnClickListener() {

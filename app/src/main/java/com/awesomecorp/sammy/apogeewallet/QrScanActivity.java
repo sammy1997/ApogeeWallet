@@ -70,10 +70,11 @@ public class QrScanActivity extends AppCompatActivity implements QRCodeReaderVie
     @Override
     public void onQRCodeRead(String text, PointF[] points) {
         Intent intent ;
-
+        Log.e("Here : ", scanType);
+        qrCodeReaderView.setQRDecodingEnabled(false);
         if (text!=null){
             editor.putString("qr_code",text);
-            if (scanType.equals("shop")) {
+            if (scanType.equals("shop")){
                 intent = new Intent(activity, ShopActivity.class);
                 editor.putBoolean("shop_qr_scanned", true);
                 editor.putBoolean("transfer_scanned", false);

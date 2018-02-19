@@ -428,9 +428,14 @@ public class WalletActivity extends FragmentActivity implements TransactionCompl
                                                 try {
                                                     String status = response.getString("status");
                                                     if (status.equals("1")){
-                                                        WalletLoadFragment walletLoadFragment = new WalletLoadFragment();
-                                                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment,walletLoadFragment).addToBackStack("Payment").commit();
-                                                        showPaymentSuccess(amountTotal);
+
+                                                        try {
+                                                            WalletLoadFragment walletLoadFragment = new WalletLoadFragment();
+                                                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment,walletLoadFragment).addToBackStack("Payment").commitAllowingStateLoss();
+                                                            showPaymentSuccess(amountTotal);
+                                                        } catch (Exception e) {
+                                                            e.printStackTrace();
+                                                        }
                                                     }else {
                                                         showPaymentFailure(amountTotal);
                                                     }
