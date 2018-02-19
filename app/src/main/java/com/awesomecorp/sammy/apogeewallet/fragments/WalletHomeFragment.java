@@ -161,10 +161,12 @@ public class WalletHomeFragment extends Fragment {
                             transactions.add(transaction);
                         }
                         Collections.sort(transactions, new TransactionComparator());
+
                         adapter = new RecieptItemAdapter(transactions, getActivity(), onReceiptItemClickListener);
                         recyclerView.setAdapter(adapter);
                     }catch (Exception e){
-
+                        Log.e("Exception","here");
+                        e.printStackTrace();
                     }
 
                 }
@@ -205,7 +207,7 @@ public class WalletHomeFragment extends Fragment {
 
             transaction.setStallgroup(stallGrp);
             try {
-                Log.e("Name - ",stallGrp.getStallname());
+                Log.e("Name - ",dateOfTransaction);
                 Date date = format.parse(dateOfTransaction);
                 System.out.println(date);
                 transaction.setDate(date);

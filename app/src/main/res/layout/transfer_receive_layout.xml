@@ -37,5 +37,12 @@
         android:layout_gravity="center_horizontal"
         android:background="@drawable/white_border_button"/>
 
+    <ProgressBar
+        android:id="@+id/progressBar4"
+        android:background="@drawable/progress_bar"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
 </LinearLayout>

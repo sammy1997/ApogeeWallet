@@ -47,7 +47,6 @@ public class ItemsViewFragment extends Fragment {
     ProgressBar progressBar;
     TextView tv;
     ImageView refresh;
-    ShopLoadListener shopLoadListener;
     OnCartViewButtonListener cartViewListener;
     OnAddToCartButtonListener addToCartButtonListener;
 
@@ -67,7 +66,6 @@ public class ItemsViewFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        shopLoadListener.onShopLoad();
     }
 
     @Override
@@ -109,20 +107,19 @@ public class ItemsViewFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        shopLoadListener.onShopLoad();
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        shopLoadListener.onShopLoad();
+
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            shopLoadListener = (ShopLoadListener) context;
             addToCartButtonListener = (OnAddToCartButtonListener) context;
             cartViewListener = (OnCartViewButtonListener)context;
         }catch (ClassCastException e){
@@ -134,7 +131,6 @@ public class ItemsViewFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        shopLoadListener = null;
         cartViewListener = null;
         addToCartButtonListener = null;
     }

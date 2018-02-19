@@ -48,7 +48,19 @@
         android:layout_height="wrap_content" />
 
     <Button
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="40dp"
+        android:id="@+id/add_money_bitsian"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/white_border_button"
+        android:text="PAY USING BITS ID"
+        android:textColor="#fff"
+        android:textSize="13dp"
+        />
+
+    <Button
+        android:layout_marginTop="10dp"
         android:id="@+id/add_money_button"
         android:layout_width="300dp"
         android:layout_height="40dp"

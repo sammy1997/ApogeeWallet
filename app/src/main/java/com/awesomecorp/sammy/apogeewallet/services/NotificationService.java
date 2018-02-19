@@ -1,5 +1,6 @@
 package com.awesomecorp.sammy.apogeewallet.services;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -35,15 +36,22 @@ public class NotificationService extends Service {
     }
 
     void setChildListeners(final DatabaseReference ref, final String id){
+
+
         ref.child(id).child("stallgroup").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                boolean cancelled = Boolean.valueOf(dataSnapshot.child("cancelled").getValue().toString());
-                boolean order_ready = Boolean.valueOf(dataSnapshot.child("order_ready").getValue().toString());
-                if (cancelled ){
-                    createNotification("Your recent order got cancelled");
-                }else if (order_ready){
-                    createNotification("Your recent order is now ready");
+
+                try {
+                    boolean cancelled = Boolean.valueOf(dataSnapshot.child("cancelled").getValue().toString());
+                    boolean order_ready = Boolean.valueOf(dataSnapshot.child("order_ready").getValue().toString());
+                    if (cancelled ){
+                        createNotification("Your recent order got cancelled");
+                    }else if (order_ready){
+                        createNotification("Your recent order is now ready");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
 
@@ -60,16 +68,16 @@ public class NotificationService extends Service {
         reference = reference.child(walletID);
 
 
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                createNotification("You have a new transaction notification");
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
+//        reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+////                createNotification("You have a new transaction notification");
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//            }
+//        });
 
         final DatabaseReference finalReference = reference;
         reference.child("transactions").addChildEventListener(new ChildEventListener() {

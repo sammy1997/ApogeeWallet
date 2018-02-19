@@ -49,26 +49,17 @@ public class OrderFoodFragment extends Fragment {
 
     OnCartViewButtonListener cartViewListener;
     OnViewItemsClickedListener viewItemsClickedListener;
-    ShopLoadListener shopLoadListener;
     ImageView cartView;
 
-
-    public static OrderFoodFragment newInstance(List<Shop> shops) {
-        OrderFoodFragment fragment = new OrderFoodFragment();
-        fragment.shops = shops;
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        shopLoadListener.onShopLoad();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        shopLoadListener.onShopLoad();
         View orderFood = inflater.inflate(R.layout.fragment_order_food, container, false);
         recyclerView = orderFood.findViewById(R.id.shop_list);
         shops = new ArrayList<>();
@@ -105,7 +96,6 @@ public class OrderFoodFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        shopLoadListener.onShopLoad();
     }
 
     @Override
@@ -113,7 +103,6 @@ public class OrderFoodFragment extends Fragment {
         super.onAttach(context);
 
         try {
-            shopLoadListener = (ShopLoadListener) context;
             cartViewListener = (OnCartViewButtonListener) context;
             viewItemsClickedListener = (OnViewItemsClickedListener)context;
         }catch (ClassCastException e){
@@ -126,7 +115,6 @@ public class OrderFoodFragment extends Fragment {
     public void onDetach() {
         cartViewListener =null;
         viewItemsClickedListener =null;
-        shopLoadListener = null;
         super.onDetach();
     }
 

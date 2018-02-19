@@ -25,7 +25,12 @@
         <service
             android:name=".services.NotificationService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".activities.WebViewActivity" />
+        <activity android:name=".activities.ShopActivity" />
+        <activity android:name=".activities.CartActivity" />
+        <activity android:name=".activities.OrderPlaceIntermediateActivity"></activity>
     </application>
 
 </manifest>

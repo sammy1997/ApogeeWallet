@@ -1,7 +1,9 @@
 package com.awesomecorp.sammy.apogeewallet;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.PointF;
 import android.os.Build;
@@ -10,10 +12,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.awesomecorp.sammy.apogeewallet.activities.ShopActivity;
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
 
 public class QrScanActivity extends AppCompatActivity implements QRCodeReaderView.OnQRCodeReadListener {
@@ -23,18 +27,22 @@ public class QrScanActivity extends AppCompatActivity implements QRCodeReaderVie
     public int CAMERA_REQUEST_CODE =200;
     ImageView flash;
     String scanType;
-    public int SHOP_SCAN_RESULT_CODE=2;
-    public int TRANSFER_SCAN_RESULT_CODE= 5;
+    Activity activity;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
+    @SuppressLint("CommitPrefEdits")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activity =this;
         setContentView(R.layout.activity_qr_scan);
         scanType = getIntent().getExtras().getString("scan");
         flash =findViewById(R.id.flash);
         qrCodeReaderView = findViewById(R.id.qr_reader);
         qrCodeReaderView.setOnQRCodeReadListener(this);
-
+        preferences = getApplicationContext().getSharedPreferences("details",MODE_PRIVATE);
+        editor = preferences.edit();
         getPerms(this);
     }
 
@@ -61,14 +69,26 @@ public class QrScanActivity extends AppCompatActivity implements QRCodeReaderVie
 
     @Override
     public void onQRCodeRead(String text, PointF[] points) {
-        Intent intent=new Intent();
-        intent.putExtra("MESSAGE",text);
-        if (scanType.equals("shop")){
-            setResult(SHOP_SCAN_RESULT_CODE,intent);
-        }else {
-            setResult(TRANSFER_SCAN_RESULT_CODE,intent);
-        }
+        Intent intent ;
 
+        if (text!=null){
+            editor.putString("qr_code",text);
+            if (scanType.equals("shop")) {
+                intent = new Intent(activity, ShopActivity.class);
+                editor.putBoolean("shop_qr_scanned", true);
+                editor.putBoolean("transfer_scanned", false);
+            } else {
+                intent = new Intent(activity, WalletActivity.class);
+                editor.putBoolean("shop_qr_scanned", false);
+                editor.putBoolean("transfer_scanned", true);
+            }
+        }else {
+            intent = new Intent(activity, WalletActivity.class);
+            editor.putBoolean("shop_qr_scanned", false);
+            editor.putBoolean("transfer_scanned", false);
+        }
+        editor.apply();
+        startActivity(intent);
         finish();
     }
 

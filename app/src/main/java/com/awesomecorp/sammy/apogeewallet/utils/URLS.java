@@ -16,4 +16,5 @@ public class URLS {
     public static String add_amount = baseIP + "add_money_request/";
     public static String transfer = baseIP + "transfer/";
     public static String generate = baseIP + "generate_code/";
+    public static String addMoneyBitsian = baseIP + "add_money_bitsian/";
 }

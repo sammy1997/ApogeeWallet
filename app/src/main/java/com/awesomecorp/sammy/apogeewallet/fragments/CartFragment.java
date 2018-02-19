@@ -43,13 +43,10 @@ public class CartFragment extends Fragment{
     private RecyclerView.LayoutManager layoutManager;
     List<CartItem> items;
     ProgressBar progressBar;
+
     public CartFragment() {
     }
 
-    public static CartFragment newInstance() {
-        CartFragment fragment = new CartFragment();
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

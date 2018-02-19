@@ -41,8 +41,9 @@
         <ImageView
             android:id="@+id/add_to_cart_button"
             android:src="@drawable/add_to_cart"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="35dp"
+            android:padding="6dp"
+            android:layout_height="35dp"
             android:layout_gravity="center_vertical" />
 
     </LinearLayout>
