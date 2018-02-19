@@ -462,11 +462,8 @@ public class OrderPlaceIntermediateActivity extends AppCompatActivity {
     void successFetch(JSONObject response){
         try {
             String balance = response.getJSONObject("wallet").getString("curr_balance");
-            boolean isBitsian = response.getJSONObject("wallet").getBoolean("is_bitsian");
-
             Log.e("TAG: ",response.toString());
             editor.putString("balance",balance);
-            editor.putBoolean("is_bitsian",isBitsian);
             editor.commit();
             sendCartRequest();
         } catch (Exception e) {

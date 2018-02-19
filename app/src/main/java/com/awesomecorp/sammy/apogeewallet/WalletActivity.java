@@ -725,12 +725,19 @@ public class WalletActivity extends FragmentActivity implements TransactionCompl
             cancelOrder.setVisibility(View.VISIBLE);
             Stall stall=transaction.getStallgroup();
             if (stall.isOrder_complete() || stall.isCancelled()){
+                cancelOrder.setBackgroundResource(R.drawable.inactive_button);
                 cancelOrder.setEnabled(false);
-                cancelOrder.setVisibility(View.INVISIBLE);
+                cancelOrder.setVisibility(View.VISIBLE);
+                if (stall.isCancelled()){
+                    cancelOrder.setText("UID : N.A." );
+                }else {
+                    cancelOrder.setText("UID : " + transaction.getStallgroup().getUID());
+                }
+
             }else if (stall.isOrder_ready()){
                 cancelOrder.setVisibility(View.VISIBLE);
                 cancelOrder.setEnabled(true);
-            }else {
+            }else{
                 cancelOrder.setVisibility(View.INVISIBLE);
                 cancelOrder.setEnabled(false);
             }

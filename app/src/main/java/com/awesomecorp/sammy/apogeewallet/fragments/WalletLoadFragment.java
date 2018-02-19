@@ -142,13 +142,20 @@ public class WalletLoadFragment extends Fragment {
 
     void successFetch(JSONObject response){
         try {
-            String name = response.getJSONObject("participant").getString("name");
-            String college = response.getJSONObject("participant").getString("college_name");
             String balance = response.getJSONObject("wallet").getString("curr_balance");
             boolean isBitsian = response.getJSONObject("wallet").getBoolean("is_bitsian");
             String userid = response.getJSONObject("wallet").getString("userid");
             String walletID = response.getJSONObject("wallet").getString("uid");
             JSONArray sales = response.getJSONArray("transactions");
+            String name;
+            String college;
+            if (!isBitsian){
+                name = response.getJSONObject("participant").getString("name");
+                college = response.getJSONObject("participant").getString("college_name");
+            }else{
+                name = response.getJSONObject("bitsian").getString("name");
+                college = response.getJSONObject("bitsian").getString("college_name");
+            }
 
             Log.e("TAG: ",response.toString());
             editor.putString("name",name);
