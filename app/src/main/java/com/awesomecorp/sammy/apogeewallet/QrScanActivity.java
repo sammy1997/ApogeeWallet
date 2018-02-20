@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.awesomecorp.sammy.apogeewallet.activities.ShopActivity;
@@ -39,6 +40,12 @@ public class QrScanActivity extends AppCompatActivity implements QRCodeReaderVie
         setContentView(R.layout.activity_qr_scan);
         scanType = getIntent().getExtras().getString("scan");
         flash =findViewById(R.id.flash);
+        TextView tv = findViewById(R.id.textView19);
+        if (scanType.equals("shop")){
+            tv.setText("Scan Shop's QR code");
+        }else {
+            tv.setText("Scan receiver's QR code");
+        }
         qrCodeReaderView = findViewById(R.id.qr_reader);
         qrCodeReaderView.setOnQRCodeReadListener(this);
         preferences = getApplicationContext().getSharedPreferences("details",MODE_PRIVATE);

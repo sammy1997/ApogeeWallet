@@ -254,6 +254,7 @@ public class WalletActivity extends FragmentActivity implements TransactionCompl
 
                             ImageView qrCode = findViewById(R.id.qr_code);
                             String walletUID = preferences.getString("walletID","xx");
+
                             QRCodeWriter writer = new QRCodeWriter();
                             try {
                                 BitMatrix bitMatrix = writer.encode(walletUID, BarcodeFormat.QR_CODE, 512, 512);
@@ -716,7 +717,8 @@ public class WalletActivity extends FragmentActivity implements TransactionCompl
         heading.setText("Transaction ID : " + transaction.getId());
         total.setText("INR " + transaction.getValue());
 
-
+cancelOrder.setText("GENERATE OTP");
+        cancelOrder.setBackgroundResource(R.drawable.active_btn);
 
         final String transactionType = transaction.getT_type();
         String nameText;
@@ -726,20 +728,23 @@ public class WalletActivity extends FragmentActivity implements TransactionCompl
             cancelOrder.setVisibility(View.VISIBLE);
             Stall stall=transaction.getStallgroup();
             if (stall.isOrder_complete() || stall.isCancelled()){
+                Log.e("In on complete", "Here");
                 cancelOrder.setBackgroundResource(R.drawable.inactive_button);
                 cancelOrder.setEnabled(false);
-                cancelOrder.setVisibility(View.VISIBLE);
                 if (stall.isCancelled()){
-                    cancelOrder.setText("UID : N.A." );
+                    cancelOrder.setText("OTP : N.A." );
                 }else {
-                    cancelOrder.setText("UID : " + transaction.getStallgroup().getUID());
+                    cancelOrder.setText("OTP : " + transaction.getStallgroup().getUID());
                 }
 
             }else if (stall.isOrder_ready()){
+                Log.e("In on ready", "Here");
                 cancelOrder.setVisibility(View.VISIBLE);
                 cancelOrder.setEnabled(true);
             }else{
-                cancelOrder.setVisibility(View.INVISIBLE);
+                Log.e("In on else", "Here");
+                cancelOrder.setVisibility(View.VISIBLE);
+                cancelOrder.setBackgroundResource(R.drawable.inactive_button);
                 cancelOrder.setEnabled(false);
             }
         }
@@ -772,8 +777,7 @@ public class WalletActivity extends FragmentActivity implements TransactionCompl
             layout.startAnimation(slideUp);
             layout.setVisibility(View.VISIBLE);
         }
-        cancelOrder.setText("GENERATE OTP");
-        cancelOrder.setBackgroundResource(R.drawable.active_btn);
+
 
         clicked = false;
         cancelOrder.setOnClickListener(new View.OnClickListener() {

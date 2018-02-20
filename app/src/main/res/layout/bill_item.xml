@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_weight="0.37"
+            android:layout_weight="0.45"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -39,7 +39,7 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_weight="0.63"
+            android:layout_weight="0.55"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -63,7 +63,6 @@
                     android:textColor="#818181"
                     android:text="active"
                     android:id="@+id/status_text"
-                    android:textAlignment="textEnd"
                     android:layout_gravity="center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -73,10 +72,10 @@
             <TextView
                 android:id="@+id/date"
                 android:textColor="#707070"
-                android:layout_weight="0.6"
+                android:layout_weight="0.8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_gravity="left"
                 android:layout_marginTop="15px"
                 android:padding="5px"
                 android:text="FEB 22"
