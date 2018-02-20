@@ -5,13 +5,11 @@
     android:layout_height="match_parent"
     tools:context="com.awesomecorp.sammy.apogeewallet.WalletActivity">
 
-
     <FrameLayout android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        >
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
 
         <LinearLayout

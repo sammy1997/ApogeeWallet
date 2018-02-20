@@ -23,7 +23,7 @@
         android:layout_height="25dp"
         android:layout_marginBottom="193dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:src="@drawable/black_basket"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,8 +76,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="30dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginStart="60dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -86,5 +86,16 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
     </android.support.v7.widget.RecyclerView>
+
+
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="31dp"
+        android:src="@drawable/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

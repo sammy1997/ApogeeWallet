@@ -31,6 +31,7 @@ import com.awesomecorp.sammy.apogeewallet.WalletActivity;
 import com.awesomecorp.sammy.apogeewallet.fragments.CartFragment;
 import com.awesomecorp.sammy.apogeewallet.fragments.ItemsViewFragment;
 import com.awesomecorp.sammy.apogeewallet.fragments.OrderFoodFragment;
+import com.awesomecorp.sammy.apogeewallet.listners.BackPressedListener;
 import com.awesomecorp.sammy.apogeewallet.listners.OnAddToCartButtonListener;
 import com.awesomecorp.sammy.apogeewallet.listners.OnCartViewButtonListener;
 import com.awesomecorp.sammy.apogeewallet.listners.OnViewItemsClickedListener;
@@ -53,7 +54,7 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 
-public class ShopActivity extends AppCompatActivity implements OnAddToCartButtonListener,
+public class ShopActivity extends AppCompatActivity implements BackPressedListener, OnAddToCartButtonListener,
         OnCartViewButtonListener, OnViewItemsClickedListener {
 
     Activity activity;
@@ -353,5 +354,10 @@ public class ShopActivity extends AppCompatActivity implements OnAddToCartButton
         if (sheetBehavior.getState() ==BottomSheetBehavior.STATE_COLLAPSED){
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         }
+    }
+
+    @Override
+    public void onBackButtonFragment() {
+        super.onBackPressed();
     }
 }

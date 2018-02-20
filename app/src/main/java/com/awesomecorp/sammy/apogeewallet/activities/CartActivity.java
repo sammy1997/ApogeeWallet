@@ -33,6 +33,7 @@ import com.awesomecorp.sammy.apogeewallet.WalletActivity;
 import com.awesomecorp.sammy.apogeewallet.fragments.CartFragment;
 import com.awesomecorp.sammy.apogeewallet.fragments.OrderFoodFragment;
 import com.awesomecorp.sammy.apogeewallet.fragments.WalletLoadFragment;
+import com.awesomecorp.sammy.apogeewallet.listners.BackPressedListener;
 import com.awesomecorp.sammy.apogeewallet.listners.OnGotoShopButtonListener;
 import com.awesomecorp.sammy.apogeewallet.listners.OnRemoveFromCartListener;
 import com.awesomecorp.sammy.apogeewallet.utils.URLS;
@@ -50,7 +51,7 @@ import okhttp3.OkHttpClient;
 
 import static com.awesomecorp.sammy.apogeewallet.utils.Utils.userObject;
 
-public class CartActivity extends AppCompatActivity implements OnGotoShopButtonListener,OnRemoveFromCartListener {
+public class CartActivity extends AppCompatActivity implements BackPressedListener,OnGotoShopButtonListener,OnRemoveFromCartListener {
 
     Activity activity;
     LinearLayout bottomSheet;
@@ -490,7 +491,11 @@ public class CartActivity extends AppCompatActivity implements OnGotoShopButtonL
                         showPaymentFailure(amount);
                     }
                 });
+
     }
 
-
+    @Override
+    public void onBackButtonFragment() {
+        super.onBackPressed();
+    }
 }

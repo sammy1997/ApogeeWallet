@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.awesomecorp.sammy.apogeewallet.R;
 import com.awesomecorp.sammy.apogeewallet.adapters.RecieptItemAdapter;
 import com.awesomecorp.sammy.apogeewallet.listners.AddMoneyButtonClickListener;
+import com.awesomecorp.sammy.apogeewallet.listners.BackPressedListener;
 import com.awesomecorp.sammy.apogeewallet.listners.OnReceiptItemClickListener;
 import com.awesomecorp.sammy.apogeewallet.models.Bitsian;
 import com.awesomecorp.sammy.apogeewallet.models.Participant;
@@ -53,6 +54,7 @@ public class WalletHomeFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     SharedPreferences preferences;
 
+    BackPressedListener backPressedListener;
     AddMoneyButtonClickListener moneyButtonListener;
     OnReceiptItemClickListener onReceiptItemClickListener;
 
@@ -110,6 +112,14 @@ public class WalletHomeFragment extends Fragment {
             }
         });
 
+        ImageView back = view.findViewById(R.id.back_button);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backPressedListener.onBackButtonFragment();
+            }
+        });
+
         return view;
     }
 
@@ -119,6 +129,7 @@ public class WalletHomeFragment extends Fragment {
         super.onAttach(context);
 
         try {
+            backPressedListener = (BackPressedListener)context;
             moneyButtonListener = (AddMoneyButtonClickListener) context;
             onReceiptItemClickListener= (OnReceiptItemClickListener) context;
         }catch (ClassCastException e){
@@ -129,6 +140,7 @@ public class WalletHomeFragment extends Fragment {
 
     @Override
     public void onDetach() {
+        backPressedListener = null;
         moneyButtonListener = null;
         onReceiptItemClickListener = null;
         super.onDetach();

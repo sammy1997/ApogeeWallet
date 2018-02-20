@@ -41,6 +41,7 @@ import com.awesomecorp.sammy.apogeewallet.fragments.WalletEmptyFragment;
 import com.awesomecorp.sammy.apogeewallet.fragments.WalletHomeFragment;
 import com.awesomecorp.sammy.apogeewallet.fragments.WalletLoadFragment;
 import com.awesomecorp.sammy.apogeewallet.listners.AddMoneyButtonClickListener;
+import com.awesomecorp.sammy.apogeewallet.listners.BackPressedListener;
 import com.awesomecorp.sammy.apogeewallet.listners.OnDataLoadedListner;
 import com.awesomecorp.sammy.apogeewallet.listners.OnReceiptItemClickListener;
 import com.awesomecorp.sammy.apogeewallet.listners.TransactionCompleteListener;
@@ -70,7 +71,7 @@ import okhttp3.OkHttpClient;
 import static com.awesomecorp.sammy.apogeewallet.utils.Utils.userObject;
 
 public class WalletActivity extends FragmentActivity implements TransactionCompleteListener,
-        OnDataLoadedListner, AddMoneyButtonClickListener,OnReceiptItemClickListener{
+        OnDataLoadedListner, AddMoneyButtonClickListener,OnReceiptItemClickListener, BackPressedListener{
 
     boolean clicked;
     BottomSheetBehavior sheetBehavior;
@@ -922,6 +923,12 @@ public class WalletActivity extends FragmentActivity implements TransactionCompl
     public void transactionDone(){
         WalletLoadFragment walletLoadFragment = new WalletLoadFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment,walletLoadFragment).commit();
+    }
+
+
+    @Override
+    public void onBackButtonFragment() {
+       super.onBackPressed();
     }
 
 

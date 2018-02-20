@@ -21,6 +21,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.awesomecorp.sammy.apogeewallet.R;
 import com.awesomecorp.sammy.apogeewallet.adapters.ItemsAdapter;
+import com.awesomecorp.sammy.apogeewallet.listners.BackPressedListener;
 import com.awesomecorp.sammy.apogeewallet.listners.OnAddToCartButtonListener;
 import com.awesomecorp.sammy.apogeewallet.listners.OnCartViewButtonListener;
 import com.awesomecorp.sammy.apogeewallet.listners.ShopLoadListener;
@@ -47,6 +48,7 @@ public class ItemsViewFragment extends Fragment {
     ProgressBar progressBar;
     TextView tv;
     ImageView refresh;
+    BackPressedListener backPressedListener;
     OnCartViewButtonListener cartViewListener;
     OnAddToCartButtonListener addToCartButtonListener;
 
@@ -101,6 +103,13 @@ public class ItemsViewFragment extends Fragment {
                 cartViewListener.onCartViewButtonListener();
             }
         });
+        ImageView back = itemsViewLayout.findViewById(R.id.back_button);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backPressedListener.onBackButtonFragment();
+            }
+        });
         return itemsViewLayout;
     }
 
@@ -120,6 +129,7 @@ public class ItemsViewFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
+            backPressedListener = (BackPressedListener)context;
             addToCartButtonListener = (OnAddToCartButtonListener) context;
             cartViewListener = (OnCartViewButtonListener)context;
         }catch (ClassCastException e){
@@ -131,6 +141,7 @@ public class ItemsViewFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+        backPressedListener = null;
         cartViewListener = null;
         addToCartButtonListener = null;
     }

@@ -1,82 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
-        android:id="@+id/topLayer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/stall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Stall #25"
-            android:textColor="#000"
-            android:textSize="24dp"
-            android:layout_weight=".6"
-            android:padding="5px"
-            android:layout_margin="5px"
-            />
-        <TextView
-            android:id="@+id/status"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="0.01"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/circle_green"/>
-
-        <TextView
-            android:layout_weight="0.2"
-            android:textColor="#818181"
-            android:text="active"
-            android:id="@+id/status_text"
-            android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/bottom_layer"
-        android:layout_below="@+id/topLayer"
-        android:layout_width="match_parent"
         android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/cost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:layout_margin="5px"
-            android:padding="5px"
-            android:textColor="#707070"
-            android:layout_gravity="left"
-            android:layout_weight=".8"
-            android:text="Rs. 150"/>
+        <LinearLayout
+            android:layout_weight="0.37"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/date"
-            android:textColor="#707070"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_weight=".2"
-            android:layout_margin="5px"
-            android:padding="5px"
-            android:text="FEB 22"
-            android:textSize="16dp" />
+            <TextView
+                android:id="@+id/stall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stall #25"
+                android:textColor="#000"
+                android:textSize="24dp"
+                />
+
+            <TextView
+                android:id="@+id/cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:layout_margin="5px"
+                android:padding="5px"
+                android:textColor="#707070"
+                android:layout_gravity="left"
+                android:text="Rs. 150"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="0.63"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_gravity="right"
+                android:layout_marginTop="10px"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="0.01"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/circle_green"/>
+
+                <TextView
+                    android:layout_weight="0.4"
+                    android:textColor="#818181"
+                    android:text="active"
+                    android:id="@+id/status_text"
+                    android:textAlignment="textEnd"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/date"
+                android:textColor="#707070"
+                android:layout_weight="0.6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="15px"
+                android:padding="5px"
+                android:text="FEB 22"
+                android:textSize="13dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
     <TextView
-        android:layout_below="@+id/bottom_layer"
         android:layout_width="match_parent"
         android:layout_height="0.15dp"
         android:alpha="0.1"
         android:layout_marginLeft="30dp"
         android:background="#818181"/>
-</RelativeLayout>
+</LinearLayout>

@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.awesomecorp.sammy.apogeewallet.R;
 import com.awesomecorp.sammy.apogeewallet.adapters.CartItemsAdapter;
+import com.awesomecorp.sammy.apogeewallet.listners.BackPressedListener;
 import com.awesomecorp.sammy.apogeewallet.listners.OnGotoShopButtonListener;
 import com.awesomecorp.sammy.apogeewallet.listners.OnRemoveFromCartListener;
 import com.awesomecorp.sammy.apogeewallet.models.CartItem;
@@ -36,6 +37,7 @@ public class CartFragment extends Fragment{
 
     OnRemoveFromCartListener removeFromCartListener;
     OnGotoShopButtonListener gotoShopButtonListener;
+    BackPressedListener backPressedListener;
     SharedPreferences preferences;
     TextView textView;
     private RecyclerView recyclerView;
@@ -77,6 +79,14 @@ public class CartFragment extends Fragment{
             }
         });
 
+        ImageView back = v.findViewById(R.id.back_button);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backPressedListener.onBackButtonFragment();
+            }
+        });
+
         return v;
     }
 
@@ -94,6 +104,7 @@ public class CartFragment extends Fragment{
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
+           backPressedListener = (BackPressedListener)context;
            removeFromCartListener = (OnRemoveFromCartListener)context;
            gotoShopButtonListener = (OnGotoShopButtonListener)context;
         }catch (ClassCastException e){
@@ -105,6 +116,7 @@ public class CartFragment extends Fragment{
     @Override
     public void onDetach() {
         super.onDetach();
+        backPressedListener = null;
         gotoShopButtonListener =null;
         removeFromCartListener = null;
     }

@@ -20,6 +20,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.awesomecorp.sammy.apogeewallet.R;
 import com.awesomecorp.sammy.apogeewallet.adapters.ShopsAdapter;
+import com.awesomecorp.sammy.apogeewallet.listners.BackPressedListener;
 import com.awesomecorp.sammy.apogeewallet.listners.OnCartViewButtonListener;
 import com.awesomecorp.sammy.apogeewallet.listners.OnViewItemsClickedListener;
 import com.awesomecorp.sammy.apogeewallet.listners.ShopLoadListener;
@@ -47,6 +48,7 @@ public class OrderFoodFragment extends Fragment {
     public OrderFoodFragment() {
     }
 
+    BackPressedListener backPressedListener;
     OnCartViewButtonListener cartViewListener;
     OnViewItemsClickedListener viewItemsClickedListener;
     ImageView cartView;
@@ -90,6 +92,14 @@ public class OrderFoodFragment extends Fragment {
                 cartViewListener.onCartViewButtonListener();
             }
         });
+
+        ImageView back = orderFood.findViewById(R.id.back_button);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backPressedListener.onBackButtonFragment();
+            }
+        });
         return orderFood;
     }
 
@@ -103,6 +113,7 @@ public class OrderFoodFragment extends Fragment {
         super.onAttach(context);
 
         try {
+            backPressedListener = (BackPressedListener)context;
             cartViewListener = (OnCartViewButtonListener) context;
             viewItemsClickedListener = (OnViewItemsClickedListener)context;
         }catch (ClassCastException e){
@@ -113,6 +124,7 @@ public class OrderFoodFragment extends Fragment {
 
     @Override
     public void onDetach() {
+        backPressedListener = null;
         cartViewListener =null;
         viewItemsClickedListener =null;
         super.onDetach();
